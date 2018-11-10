@@ -35,7 +35,7 @@ class C4GUtils
         $result = urldecode(preg_replace($regex,' ',urlencode($result)));
 
         // Eingangs-Html formatieren und überflüssige Leerzeichen entfernen
-        return trim(htmlspecialchars($result));
+        return trim($result);
     }
 
     public static function cleanHtml($html, $img=false) {
@@ -46,7 +46,6 @@ class C4GUtils
         $unsafe=array(
             '/<iframe(.*?)<\/iframe>/is',
             '/<title(.*?)<\/title>/is',
-            '/<pre(.*?)<\/pre>/is',
             '/<frame(.*?)<\/frame>/is',
             '/<frameset(.*?)<\/frameset>/is',
             '/<object(.*?)<\/object>/is',
