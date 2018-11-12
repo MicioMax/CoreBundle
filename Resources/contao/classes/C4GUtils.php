@@ -331,10 +331,9 @@ class C4GUtils
     }
 
     /**
-     * Checks if a frontend user is logged in. Works for multiple contao authentication models
-     * (speak for contao 4 in general)
+     * Checks if a frontend user is logged in. Works for multiple Contao 4.x authentication models
      */
-    public static function checkFrontendUserLogin()
+    public static function isFrontendUserLoggedIn()
     {
         $name = "Contao\CoreBundle\Security\Authentication\Token\TokenChecker";
         // check if the symfony authentication model is used
@@ -346,10 +345,17 @@ class C4GUtils
     }
 
     /**
-     * Checks if a backend user is logged in. Works for multiple contao authentication models
-     * (speak for contao 4 in general)
+     * @return bool
+     * @deprecated
      */
-    public static function checkBackendUserLogin()
+    public static function checkFrontendUserLogin() {
+        return self::isFrontendUserLoggedIn();
+    }
+
+    /**
+     * Checks if a backend user is logged in. Works for multiple Contao 4.x authentication models
+     */
+    public static function isBackendUserLoggedIn()
     {
         $name = "Contao\CoreBundle\Security\Authentication\Token\TokenChecker";
         // check if the symfony authentication model is used
@@ -358,5 +364,13 @@ class C4GUtils
         } else {
             return (\Contao\BackendUser::getInstance() !== null);
         }
+    }
+
+    /**
+     * @return bool
+     * @deprecated
+     */
+    public static function checkBackendUserLogin() {
+        return self::isBackendUserLoggedIn();
     }
 }
